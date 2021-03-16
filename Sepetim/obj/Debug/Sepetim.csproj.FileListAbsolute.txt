@@ -1,0 +1,16 @@
+D:\Users\GitHub\sepetim-form-uygulamas-\Sepetim\bin\Debug\Sepetim.exe.config
+D:\Users\GitHub\sepetim-form-uygulamas-\Sepetim\bin\Debug\Sepetim.exe
+D:\Users\GitHub\sepetim-form-uygulamas-\Sepetim\bin\Debug\Sepetim.pdb
+D:\Users\GitHub\sepetim-form-uygulamas-\Sepetim\obj\Debug\Sepetim.csprojAssemblyReference.cache
+D:\Users\GitHub\sepetim-form-uygulamas-\Sepetim\obj\Debug\Sepetim.AdminPanel.resources
+D:\Users\GitHub\sepetim-form-uygulamas-\Sepetim\obj\Debug\Sepetim.Form1.resources
+D:\Users\GitHub\sepetim-form-uygulamas-\Sepetim\obj\Debug\Sepetim.Properties.Resources.resources
+D:\Users\GitHub\sepetim-form-uygulamas-\Sepetim\obj\Debug\Sepetim.csproj.GenerateResource.cache
+D:\Users\GitHub\sepetim-form-uygulamas-\Sepetim\obj\Debug\Sepetim.exe
+D:\Users\GitHub\sepetim-form-uygulamas-\Sepetim\obj\Debug\Sepetim.pdb
+D:\Users\GitHub\sepetim-form-uygulamas-\Sepetim\obj\Debug\Sepetim.LoginType.resources
+D:\Users\GitHub\sepetim-form-uygulamas-\Sepetim\obj\Debug\Sepetim.Kategori.resources
+D:\Users\GitHub\sepetim-form-uygulamas-\Sepetim\obj\Debug\Sepetim.VeriBilimciPanel.resources
+D:\Users\GitHub\sepetim-form-uygulamas-\Sepetim\obj\Debug\Sepetim.SubeSorumlusuPanel.resources
+D:\Users\GitHub\sepetim-form-uygulamas-\Sepetim\obj\Debug\Sepetim.UrunlerPanel.resources
+D:\Users\GitHub\sepetim-form-uygulamas-\Sepetim\obj\Debug\Sepetim.MusteriPanel.resources
