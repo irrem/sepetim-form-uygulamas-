@@ -44,6 +44,7 @@
             this.viewWorkerBtn.TabIndex = 0;
             this.viewWorkerBtn.Text = "Personel Görüntüle";
             this.viewWorkerBtn.UseVisualStyleBackColor = true;
+            this.viewWorkerBtn.Click += new System.EventHandler(this.viewWorkerBtn_Click);
             // 
             // viewWorkPlaceBtn
             // 
@@ -53,6 +54,7 @@
             this.viewWorkPlaceBtn.TabIndex = 1;
             this.viewWorkPlaceBtn.Text = "Şube Görüntüle";
             this.viewWorkPlaceBtn.UseVisualStyleBackColor = true;
+            this.viewWorkPlaceBtn.Click += new System.EventHandler(this.viewWorkPlaceBtn_Click);
             // 
             // viewCategory
             // 
@@ -90,7 +92,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(120, 100);
             this.button4.TabIndex = 5;
-            this.button4.Text = "Personel Görüntüle";
+            this.button4.Text = "Siparişleri Görüntüle";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -98,6 +100,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(511, 309);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.viewCostumersBtn);
@@ -106,6 +109,7 @@
             this.Controls.Add(this.viewWorkPlaceBtn);
             this.Controls.Add(this.viewWorkerBtn);
             this.Name = "AdminPanel";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AdminPanel";
             this.ResumeLayout(false);
 

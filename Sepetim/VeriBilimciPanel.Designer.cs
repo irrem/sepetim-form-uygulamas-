@@ -72,6 +72,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.editCategory);
             this.Name = "VeriBilimciPanel";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VeriBilimciPanel";
             this.ResumeLayout(false);
 

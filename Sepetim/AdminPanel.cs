@@ -40,5 +40,18 @@ namespace Sepetim
             MusteriPanel musteriPanel = new MusteriPanel();
             musteriPanel.Show();
         }
+
+        private void viewWorkPlaceBtn_Click(object sender, EventArgs e)
+        {
+            SubePanel subePanel = new SubePanel();
+            subePanel.Show();
+        }
+
+        private void viewWorkerBtn_Click(object sender, EventArgs e)
+        {
+            PersonelPanel personelPanel = new PersonelPanel();
+            personelPanel.Show();
+
+        }
     }
 }

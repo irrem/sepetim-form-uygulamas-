@@ -20,7 +20,16 @@ namespace Sepetim
 
         private void dgwCostumers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            categoryTxt.Text = dgwCostumers.CurrentRow.Cells[1].Value.ToString();
+            textBox9.Text = dgwCostumers.CurrentRow.Cells[1].Value.ToString();
+            textBox8.Text = dgwCostumers.CurrentRow.Cells[2].Value.ToString();
+            textBox1.Text = dgwCostumers.CurrentRow.Cells[3].Value.ToString();
+            textBox2.Text = dgwCostumers.CurrentRow.Cells[4].Value.ToString();
+            textBox3.Text = dgwCostumers.CurrentRow.Cells[5].Value.ToString();
+            textBox4.Text = dgwCostumers.CurrentRow.Cells[6].Value.ToString();
+            textBox5.Text = dgwCostumers.CurrentRow.Cells[7].Value.ToString();
+            textBox6.Text = dgwCostumers.CurrentRow.Cells[8].Value.ToString();
+            textBox7.Text = dgwCostumers.CurrentRow.Cells[9].Value.ToString();
+
         }
 
         private void MusteriPanel_Load(object sender, EventArgs e)
@@ -30,7 +39,30 @@ namespace Sepetim
 
         private void addBtn_Click(object sender, EventArgs e)
         {
+            
+                Add(new MusteriModel
+                {
 
+                    musteriAd = textBox9.Text,
+                    musteriSoyad = textBox8.Text,
+                    musteriTelefon = textBox1.Text,
+                    musteriAdres = textBox2.Text,
+                    musteriIl = textBox3.Text,
+                    musteriIlce = textBox4.Text,
+                    musteriEnlemBoylam = textBox5.Text,
+                    musteriMail = textBox6.Text,
+                    musteriSanalSepetPuan =Convert.ToInt32( textBox7.Text)
+
+                });
+
+
+                if (MessageBox.Show("Bütün bilgilerinin doğruluğundan emin misiniz?", "Onay Verin", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    MessageBox.Show("Ürün Sistemimize Başarıyla Eklenmiştir.");
+                }
+
+                dgwCostumers.DataSource = GetAll();
+           
         }
 
         private void updateBtn_Click(object sender, EventArgs e)
@@ -38,8 +70,17 @@ namespace Sepetim
 
             Update(new MusteriModel
             {
-                musteriId = Convert.ToInt32(dgwCostumers.CurrentRow.Cells[1].Value),
-                musteriAd = categoryTxt.Text
+                musteriId = Convert.ToInt32(dgwCostumers.CurrentRow.Cells[0].Value),
+                musteriAd = textBox9.Text,
+                musteriSoyad = textBox8.Text,
+                musteriTelefon = textBox1.Text,
+                musteriAdres = textBox2.Text,
+                musteriIl = textBox3.Text,
+                musteriIlce = textBox4.Text,
+                musteriEnlemBoylam = textBox5.Text,
+                musteriMail = textBox6.Text,
+                musteriSanalSepetPuan = Convert.ToInt32(textBox7.Text)
+
             });
             if (MessageBox.Show("Bütün bilgilerinin doğruluğundan emin misiniz?", "Onay Verin", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
@@ -95,30 +136,35 @@ namespace Sepetim
             return Musteriler;
         }
 
-       /* public void Add(MusteriModel Musteri)
+        public void Add(MusteriModel musteri)
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("insert into Urunler values (@UrunAd,@UrunStok,@UrunBirimFiyat,@UrunKdvYuzdeOran,@UrunSatisFiyat,@UrunSubeId,@UrunKategoriId)", baglanti);
+            SqlCommand command = new SqlCommand("insert into Musteri values (@musteriAd," +
+                "@musteriSoyad,@musteriTelefon,@musteriAdres," +
+                "@musteriIl,@musteriIlce,@musteriEnlemBoylam," +
+                "@musteriMail,@musteriSanalSepetPuan)", baglanti);
 
-            command.Parameters.AddWithValue("urunAd", Urun.UrunAd);
-            command.Parameters.AddWithValue("urunStok", Urun.UrunStok);
-            command.Parameters.AddWithValue("urunBirimFiyat", Urun.UrunBirimFiyat);
-            command.Parameters.AddWithValue("urunKdvYuzdeOran", Urun.UrunKdvYuzdeOran);
-            command.Parameters.AddWithValue("urunSatisFiyat", Urun.UrunSatisFiyat);
-            command.Parameters.AddWithValue("subeId", Urun.UrunSubeId);
-            command.Parameters.AddWithValue("kategoriId", Urun.UrunKategoriId);
+        
+         command.Parameters.AddWithValue("musteriAd", musteri.musteriAd);
+         command.Parameters.AddWithValue("musteriSoyad", musteri.musteriSoyad);
+         command.Parameters.AddWithValue("musteriTelefon", musteri.musteriTelefon);
+         command.Parameters.AddWithValue("musteriAdres", musteri.musteriAdres);
+         command.Parameters.AddWithValue("musteriIl", musteri.musteriIl);
+         command.Parameters.AddWithValue("musteriIlce", musteri.musteriIlce);
+         command.Parameters.AddWithValue("musteriEnlemBoylam", musteri.musteriEnlemBoylam);
+         command.Parameters.AddWithValue("musteriMail", musteri.musteriMail);
+         command.Parameters.AddWithValue("musteriSanalSepetPuan", musteri.musteriSanalSepetPuan);
             command.ExecuteNonQuery();
-
             baglanti.Close();
 
-        }*/
+        }
         public void Update(MusteriModel Musteri)
         {
             ConnectionControl();
             SqlCommand command = new SqlCommand("Update Musteri set musteriAd=@musteriAd," +
                 "musteriSoyad=@musteriSoyad,musteriTelefon=@musteriTelefon,musteriAdres=@musteriAdres," +
                 "musteriIl=@musteriIl,musteriIlce=@musteriIlce,musteriEnlemBoylam=@musteriEnlemBoylam," +
-                "musteriMail=@musteriMail,musteriSanalSepetPuan=@musteriSanalSepetPuan," +
+                "musteriMail=@musteriMail,musteriSanalSepetPuan=@musteriSanalSepetPuan" +
                 " where musteriId=@musteriId", baglanti);
 
             command.Parameters.AddWithValue("musteriId", Musteri.musteriId);

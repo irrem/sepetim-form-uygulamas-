@@ -14,3 +14,5 @@ D:\Users\GitHub\sepetim-form-uygulamas-\Sepetim\obj\Debug\Sepetim.VeriBilimciPan
 D:\Users\GitHub\sepetim-form-uygulamas-\Sepetim\obj\Debug\Sepetim.SubeSorumlusuPanel.resources
 D:\Users\GitHub\sepetim-form-uygulamas-\Sepetim\obj\Debug\Sepetim.UrunlerPanel.resources
 D:\Users\GitHub\sepetim-form-uygulamas-\Sepetim\obj\Debug\Sepetim.MusteriPanel.resources
+D:\Users\GitHub\sepetim-form-uygulamas-\Sepetim\obj\Debug\Sepetim.PersonelPanel.resources
+D:\Users\GitHub\sepetim-form-uygulamas-\Sepetim\obj\Debug\Sepetim.SubePanel.resources

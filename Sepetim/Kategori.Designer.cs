@@ -98,6 +98,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(466, 333);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.deleteCategoryBtn);
@@ -106,6 +107,7 @@
             this.Controls.Add(this.categoryTxt);
             this.Controls.Add(this.dgwCategory);
             this.Name = "Kategori";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kategori";
             this.Load += new System.EventHandler(this.Kategori_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgwCategory)).EndInit();

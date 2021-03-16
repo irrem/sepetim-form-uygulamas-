@@ -8,14 +8,14 @@ namespace Sepetim
 {
     public class UrunModel
     {
-        public int UrunId { get; set; }
-        public String UrunAd { get; set; }
-        public int UrunStok { get; set; }
-        public int UrunBirimFiyat { get; set; }
-        public int UrunKdvYuzdeOran { get; set; }
-        public int UrunSatisFiyat { get; set; }
-        public int UrunSubeId { get; set; }
-        public int UrunKategoriId { get; set; }
+        public int urunId { get; set; }
+        public String urunAd { get; set; }
+        public int urunStok { get; set; }
+        public int urunBirimFiyat { get; set; }
+        public int urunKdvYuzdeOran { get; set; }
+        public int urunSatisFiyat { get; set; }
+        public int subeId { get; set; }
+        public int kategoriId { get; set; }
 
     }
 }

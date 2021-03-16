@@ -35,9 +35,9 @@
             // 
             // loginBtn
             // 
-            this.loginBtn.Location = new System.Drawing.Point(102, 188);
+            this.loginBtn.Location = new System.Drawing.Point(100, 178);
             this.loginBtn.Name = "loginBtn";
-            this.loginBtn.Size = new System.Drawing.Size(75, 23);
+            this.loginBtn.Size = new System.Drawing.Size(86, 46);
             this.loginBtn.TabIndex = 0;
             this.loginBtn.Text = "Giriş";
             this.loginBtn.UseVisualStyleBackColor = true;
@@ -45,17 +45,19 @@
             // 
             // nameTxt
             // 
-            this.nameTxt.Location = new System.Drawing.Point(92, 103);
+            this.nameTxt.Location = new System.Drawing.Point(81, 64);
+            this.nameTxt.Multiline = true;
             this.nameTxt.Name = "nameTxt";
-            this.nameTxt.Size = new System.Drawing.Size(100, 20);
+            this.nameTxt.Size = new System.Drawing.Size(122, 36);
             this.nameTxt.TabIndex = 1;
             this.nameTxt.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // passwordTxt
             // 
-            this.passwordTxt.Location = new System.Drawing.Point(92, 145);
+            this.passwordTxt.Location = new System.Drawing.Point(81, 121);
+            this.passwordTxt.Multiline = true;
             this.passwordTxt.Name = "passwordTxt";
-            this.passwordTxt.Size = new System.Drawing.Size(100, 20);
+            this.passwordTxt.Size = new System.Drawing.Size(122, 38);
             this.passwordTxt.TabIndex = 2;
             this.passwordTxt.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
@@ -63,11 +65,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(302, 273);
             this.Controls.Add(this.passwordTxt);
             this.Controls.Add(this.nameTxt);
             this.Controls.Add(this.loginBtn);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
