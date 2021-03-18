@@ -19,7 +19,9 @@ namespace Sepetim
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            TeslimatPanel teslimat = new TeslimatPanel();
+            teslimat.admin = true;
+            teslimat.Show();
         }
 
         private void productListBtn_Click(object sender, EventArgs e)

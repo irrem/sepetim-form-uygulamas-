@@ -66,7 +66,25 @@ namespace Sepetim
             chooseTypeBox.DisplayMember = "personelAdSoyad";
             chooseTypeBox.ValueMember = "personelId";
         }
-        
+        public string GetAllWithId(int id)
+        {
+            ConnectionControl();
+            SqlCommand command;
+            string subeAd = "";
+            command = new SqlCommand("Select * from Subeler where subeId=@id", baglanti);
+            command.Parameters.AddWithValue("id", id);
+
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                subeAd = reader["subeAd"].ToString();
+
+
+            }
+            reader.Close();
+            baglanti.Close();
+            return subeAd;
+        }
         public List<SubeModel> GetAll()
         {
             ConnectionControl();
@@ -210,6 +228,51 @@ namespace Sepetim
 
         private void chooseTypeBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+        }
+
+        private void chooseTypeBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox8_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox9_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

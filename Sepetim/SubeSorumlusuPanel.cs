@@ -29,5 +29,11 @@ namespace Sepetim
             TeslimatPanel teslimatPanel = new TeslimatPanel();
             teslimatPanel.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Rapor rapor = new Rapor();
+            rapor.Show();
+        }
     }
 }

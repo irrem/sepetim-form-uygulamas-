@@ -37,6 +37,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.secilenSiparisLbl = new System.Windows.Forms.Label();
             this.dgwTeslimat = new System.Windows.Forms.DataGridView();
+            this.siparisSilBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgwSiparis)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgwTeslimat)).BeginInit();
             this.SuspendLayout();
@@ -61,7 +62,7 @@
             // 
             // deleteBtn
             // 
-            this.deleteBtn.Location = new System.Drawing.Point(518, 254);
+            this.deleteBtn.Location = new System.Drawing.Point(518, 272);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(99, 52);
             this.deleteBtn.TabIndex = 76;
@@ -71,7 +72,7 @@
             // 
             // updateBtn
             // 
-            this.updateBtn.Location = new System.Drawing.Point(518, 199);
+            this.updateBtn.Location = new System.Drawing.Point(518, 210);
             this.updateBtn.Name = "updateBtn";
             this.updateBtn.Size = new System.Drawing.Size(99, 49);
             this.updateBtn.TabIndex = 75;
@@ -125,12 +126,23 @@
             this.dgwTeslimat.TabIndex = 90;
             this.dgwTeslimat.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgwTeslimat_CellContentClick);
             // 
+            // siparisSilBtn
+            // 
+            this.siparisSilBtn.Location = new System.Drawing.Point(413, 108);
+            this.siparisSilBtn.Name = "siparisSilBtn";
+            this.siparisSilBtn.Size = new System.Drawing.Size(99, 55);
+            this.siparisSilBtn.TabIndex = 91;
+            this.siparisSilBtn.Text = "Siparişi İptal Et";
+            this.siparisSilBtn.UseVisualStyleBackColor = true;
+            this.siparisSilBtn.Click += new System.EventHandler(this.siparisSilBtn_Click);
+            // 
             // TeslimatPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(697, 363);
+            this.Controls.Add(this.siparisSilBtn);
             this.Controls.Add(this.dgwTeslimat);
             this.Controls.Add(this.secilenSiparisLbl);
             this.Controls.Add(this.label4);
@@ -141,6 +153,7 @@
             this.Controls.Add(this.addBtn);
             this.Controls.Add(this.dgwSiparis);
             this.Name = "TeslimatPanel";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TeslimatPanel";
             this.Load += new System.EventHandler(this.TeslimatPanel_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgwSiparis)).EndInit();
@@ -160,5 +173,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label secilenSiparisLbl;
         private System.Windows.Forms.DataGridView dgwTeslimat;
+        private System.Windows.Forms.Button siparisSilBtn;
     }
 }

@@ -133,6 +133,24 @@ namespace Sepetim
             baglanti.Close();
             return Personeller;
         }
+        public string GetAllWithId(int id)
+        {
+            ConnectionControl();
+            SqlCommand command;
+            string personelAdSoyad = "";
+                command = new SqlCommand("Select * from Personel where personelId=@id", baglanti);
+            command.Parameters.AddWithValue("id", id);
+
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                personelAdSoyad = reader["personelAdSoyad"].ToString();
+                 
+            }
+            reader.Close();
+            baglanti.Close();
+            return personelAdSoyad;
+        }
         public List<PersonelModel> GetAllWithCategory(int id)
         {
             

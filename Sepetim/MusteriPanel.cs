@@ -136,6 +136,25 @@ namespace Sepetim
             baglanti.Close();
             return Musteriler;
         }
+        public string GetAllWithId(int id)
+        {
+            ConnectionControl();
+            SqlCommand command;
+            string musteriAd = "";
+            command = new SqlCommand("Select * from Musteri where musteriId=@id", baglanti);
+            command.Parameters.AddWithValue("id", id);
+
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                musteriAd = reader["musteriAd"].ToString() + " " + reader["musteriSoyad"].ToString();
+              
+
+            }
+            reader.Close();
+            baglanti.Close();
+            return musteriAd;
+        }
 
         public void Add(MusteriModel musteri)
         {

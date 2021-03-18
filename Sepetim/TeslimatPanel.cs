@@ -18,6 +18,7 @@ namespace Sepetim
             InitializeComponent();
         }
         SqlConnection baglanti = new SqlConnection(@"Data Source =DESKTOP-UF1JUFT\SQLEXPRESS; initial catalog=Sepetim;integrated security=true");
+        public bool admin = false;
         private void ConnectionControl()
         {
             if (baglanti.State == ConnectionState.Closed)
@@ -33,9 +34,24 @@ namespace Sepetim
 
         private void TeslimatPanel_Load(object sender, EventArgs e)
         {
+            siparisSilBtn.Visible = false ;
             dgwSiparis.DataSource = GetSiparis();
             PersonelGetir();
              dgwTeslimat.DataSource = TeslimatGoruntule();
+            if (admin)
+            {
+                siparisSilBtn.Visible=true;
+            }
+
+        }
+        public void Delete(int id)
+        {
+            ConnectionControl();
+            SqlCommand command = new SqlCommand("Delete from Siparis where  siparisId=@siparisId", baglanti);
+            command.Parameters.AddWithValue("siparisId", id);
+            command.ExecuteNonQuery();
+
+            baglanti.Close();
 
         }
         public void PersonelGetir()
@@ -133,7 +149,7 @@ namespace Sepetim
             DateTime localDate = DateTime.Now;
             
             int x = int.Parse(localDate.ToShortTimeString().Substring(0, 2));
-            if (x > 9 && x < 21)
+            if (x != null)
             {
                 string sonCalismaSaati=personelCalismaSaatiCek(Convert.ToInt32(chooseTypeBox.SelectedValue));
                 
@@ -227,6 +243,56 @@ namespace Sepetim
             baglanti.Close();
             return Teslimat;
         }
+        public List<TeslimatModel> TeslimatGoruntuleTariheGore(DateTime date1,DateTime date2)
+        {
+            ConnectionControl();
+            SqlCommand command;
+
+            command = new SqlCommand("Select * from Teslimat where teslimatSaatiMax>@date1 and teslimatSaatiMax<@date2", baglanti);
+            command.Parameters.AddWithValue("date1", date1);
+            command.Parameters.AddWithValue("date2", date2);
+
+            SqlDataReader reader = command.ExecuteReader();
+            List<TeslimatModel> Teslimat = new List<TeslimatModel>();
+            while (reader.Read())
+            {
+                TeslimatModel teslimatModel = new TeslimatModel
+                {
+                    teslimatId = Convert.ToInt32(reader["teslimatId"]),
+                    siparisId = Convert.ToInt32(reader["siparisId"]),
+                    personelId = Convert.ToInt32(reader["personelId"]),
+                    teslimatSaatiMin = Convert.ToDateTime(reader["teslimatSaatiMin"]),
+                    teslimatSaatiMax = Convert.ToDateTime(reader["teslimatSaatiMax"]),
+                    teslimatDurumu = reader["teslimatDurumu"].ToString()
+                };
+                Teslimat.Add(teslimatModel);
+            }
+            reader.Close();
+            baglanti.Close();
+            return Teslimat;
+        }
+
+       public int siparisId, subeId, musteriId, siparisTutar;
+        public void GetAllWithId(int id)
+        {
+            ConnectionControl();
+            SqlCommand command;
+            string personelAdSoyad = "";
+            command = new SqlCommand("Select * from Siparis where siparisId=@id", baglanti);
+            command.Parameters.AddWithValue("id", id);
+
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                siparisId = Convert.ToInt32(reader["siparisId"]);
+                subeId = Convert.ToInt32(reader["subeId"]);
+                musteriId= Convert.ToInt32(reader["musteriId"]);
+                siparisTutar = Convert.ToInt32(reader["siparisTutar"]);
+            }
+            reader.Close();
+            baglanti.Close();
+        }
+
         
         public string personelCalismaSaatiCek(int id)
         {
@@ -252,20 +318,29 @@ namespace Sepetim
 
         }
 
+        private void siparisSilBtn_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bütün bilgilerinin doğruluğundan emin misiniz?", "Onay Verin", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                Delete(Convert.ToInt32(dgwSiparis.CurrentRow.Cells[0].Value));
+                MessageBox.Show("Sipariş Sistemden Başarıyla Silinmiştir.");
+            }
+            dgwSiparis.DataSource = GetSiparis();
+        }
+
         private void updateBtn_Click(object sender, EventArgs e)
         {
               if (MessageBox.Show("Bütün bilgilerinin doğruluğundan emin misiniz?", "Onay Verin", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
+              {
                 Update(new TeslimatModel
                 {
                     teslimatId = Convert.ToInt32(dgwTeslimat.CurrentRow.Cells[0].Value),
                     teslimatDurumu = "Teslim edildi!"
                     
                 });
-                
-            }
                 MessageBox.Show("Teslimat Başarıyla Tamamlanmıştır.");
-
+                 }
+             
 
             dgwTeslimat.DataSource = TeslimatGoruntule();
 
@@ -287,9 +362,9 @@ namespace Sepetim
                     teslimatDurumu = "İptal edildi!"
 
                 });
+                MessageBox.Show("Teslimat İptal Edilmiştir.");
 
             }
-            MessageBox.Show("Teslimat İptal Edilmiştir.");
 
 
             dgwTeslimat.DataSource = TeslimatGoruntule();
