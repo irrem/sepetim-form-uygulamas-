@@ -40,6 +40,10 @@ namespace Sepetim
         private void addBtn_Click(object sender, EventArgs e)
         {
             
+              
+
+                if (MessageBox.Show("Bütün bilgilerinin doğruluğundan emin misiniz?", "Onay Verin", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
                 Add(new MusteriModel
                 {
 
@@ -51,14 +55,11 @@ namespace Sepetim
                     musteriIlce = textBox4.Text,
                     musteriEnlemBoylam = textBox5.Text,
                     musteriMail = textBox6.Text,
-                    musteriSanalSepetPuan =Convert.ToInt32( textBox7.Text)
+                    musteriSanalSepetPuan = Convert.ToInt32(textBox7.Text)
 
                 });
 
-
-                if (MessageBox.Show("Bütün bilgilerinin doğruluğundan emin misiniz?", "Onay Verin", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    MessageBox.Show("Ürün Sistemimize Başarıyla Eklenmiştir.");
+                MessageBox.Show("Ürün Sistemimize Başarıyla Eklenmiştir.");
                 }
 
                 dgwCostumers.DataSource = GetAll();
@@ -68,22 +69,22 @@ namespace Sepetim
         private void updateBtn_Click(object sender, EventArgs e)
         {
 
-            Update(new MusteriModel
-            {
-                musteriId = Convert.ToInt32(dgwCostumers.CurrentRow.Cells[0].Value),
-                musteriAd = textBox9.Text,
-                musteriSoyad = textBox8.Text,
-                musteriTelefon = textBox1.Text,
-                musteriAdres = textBox2.Text,
-                musteriIl = textBox3.Text,
-                musteriIlce = textBox4.Text,
-                musteriEnlemBoylam = textBox5.Text,
-                musteriMail = textBox6.Text,
-                musteriSanalSepetPuan = Convert.ToInt32(textBox7.Text)
-
-            });
             if (MessageBox.Show("Bütün bilgilerinin doğruluğundan emin misiniz?", "Onay Verin", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                Update(new MusteriModel
+                {
+                    musteriId = Convert.ToInt32(dgwCostumers.CurrentRow.Cells[0].Value),
+                    musteriAd = textBox9.Text,
+                    musteriSoyad = textBox8.Text,
+                    musteriTelefon = textBox1.Text,
+                    musteriAdres = textBox2.Text,
+                    musteriIl = textBox3.Text,
+                    musteriIlce = textBox4.Text,
+                    musteriEnlemBoylam = textBox5.Text,
+                    musteriMail = textBox6.Text,
+                    musteriSanalSepetPuan = Convert.ToInt32(textBox7.Text)
+
+                });
                 MessageBox.Show("Ürün Sistemimize Başarıyla Guncellenmiştir.");
             }
             dgwCostumers.DataSource = GetAll();

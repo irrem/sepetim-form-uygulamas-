@@ -26,26 +26,25 @@ namespace Sepetim
             textBox1.Text = dgwProduct.CurrentRow.Cells[3].Value.ToString();
             textBox2.Text = dgwProduct.CurrentRow.Cells[4].Value.ToString();
             textBox3.Text = dgwProduct.CurrentRow.Cells[5].Value.ToString();
-            textBox4.Text = dgwProduct.CurrentRow.Cells[6].Value.ToString();
         }
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            Add(new UrunModel
-            {
-
-                urunAd = textBox9.Text,
-                urunStok = Convert.ToInt32(textBox8.Text),
-                urunBirimFiyat = Convert.ToInt32(textBox1.Text),
-                urunKdvYuzdeOran = Convert.ToInt32(textBox2.Text),
-                urunSatisFiyat = Convert.ToInt32(textBox3.Text),
-                subeId = Convert.ToInt32(textBox4.Text),
-                kategoriId = Convert.ToInt32(comboBox1.SelectedValue)
-
-            });
-
             if (MessageBox.Show("Bütün bilgilerinin doğruluğundan emin misiniz?", "Onay Verin", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                Add(new UrunModel
+                {
+
+                    urunAd = textBox9.Text,
+                    urunStok = Convert.ToInt32(textBox8.Text),
+                    urunBirimFiyat = Convert.ToInt32(textBox1.Text),
+                    urunKdvYuzdeOran = Convert.ToInt32(textBox2.Text),
+                    urunSatisFiyat = Convert.ToInt32(textBox3.Text),
+                    subeId = Convert.ToInt32(chooseTypeBox2.SelectedValue),
+                    kategoriId = Convert.ToInt32(comboBox1.SelectedValue)
+
+                });
+
                 MessageBox.Show("Ürün Sistemimize Başarıyla Eklenmiştir.");
             }
 
@@ -54,22 +53,23 @@ namespace Sepetim
 
         private void updateBtn_Click(object sender, EventArgs e)
         {
-            Update(new UrunModel
-            {
-
-                urunId = Convert.ToInt32(dgwProduct.CurrentRow.Cells[0].Value),
-                urunAd = textBox9.Text,
-                urunStok = Convert.ToInt32(textBox8.Text),
-                urunBirimFiyat = Convert.ToInt32(textBox1.Text),
-                urunKdvYuzdeOran = Convert.ToInt32(textBox2.Text),
-                urunSatisFiyat = Convert.ToInt32(textBox3.Text),
-                subeId = Convert.ToInt32(textBox4.Text),
-                kategoriId = Convert.ToInt32(comboBox1.SelectedValue)
-            });
 
             if (MessageBox.Show("Bütün bilgilerinin doğruluğundan emin misiniz?", "Onay Verin", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                MessageBox.Show("Ürün Başarıyla Güncellenmiştir.");
+            {
+                Update(new UrunModel
+                {
 
+                    urunId = Convert.ToInt32(dgwProduct.CurrentRow.Cells[0].Value),
+                    urunAd = textBox9.Text,
+                    urunStok = Convert.ToInt32(textBox8.Text),
+                    urunBirimFiyat = Convert.ToInt32(textBox1.Text),
+                    urunKdvYuzdeOran = Convert.ToInt32(textBox2.Text),
+                    urunSatisFiyat = Convert.ToInt32(textBox3.Text),
+                    subeId = Convert.ToInt32(chooseTypeBox2.SelectedValue),
+                    kategoriId = Convert.ToInt32(comboBox1.SelectedValue)
+                });
+                MessageBox.Show("Ürün Başarıyla Güncellenmiştir.");
+            }
 
             dgwProduct.DataSource = GetAll();
 
@@ -92,10 +92,21 @@ namespace Sepetim
             comboBox1.DisplayMember = "KategoriAd";
             comboBox1.ValueMember = "KategoriId";
         }
+
+        public void SubeDoldur()
+        {
+            SubePanel sube = new SubePanel();
+
+            chooseTypeBox2.DataSource = sube.GetAll();
+            chooseTypeBox2.DisplayMember = "subeAd";
+            chooseTypeBox2.ValueMember = "subeId";
+        }
+
         private void UrunlerPanel_Load(object sender, EventArgs e)
         {
             dgwProduct.DataSource = GetAll();
             KategoriDoldur();
+            SubeDoldur();
         }
         SqlConnection baglanti = new SqlConnection(@"Data Source =DESKTOP-UF1JUFT\SQLEXPRESS; initial catalog=Sepetim;integrated security=true");
         private void ConnectionControl()

@@ -10,5 +10,6 @@ namespace Sepetim
     {
         public int KategoriId { get; set; }
         public string KategoriAd { get; set; }
+        public string KategoriKodAd { get; set; }
     }
 }

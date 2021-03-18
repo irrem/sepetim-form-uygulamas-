@@ -37,10 +37,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -135,19 +133,10 @@
             this.label3.TabIndex = 47;
             this.label3.Text = "Telefon";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(436, 116);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 13);
-            this.label2.TabIndex = 46;
-            this.label2.Text = "Soyad";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(436, 90);
+            this.label1.Location = new System.Drawing.Point(436, 116);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(20, 13);
             this.label1.TabIndex = 45;
@@ -155,17 +144,10 @@
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(536, 83);
+            this.textBox9.Location = new System.Drawing.Point(536, 109);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(207, 20);
             this.textBox9.TabIndex = 44;
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(536, 109);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(207, 20);
-            this.textBox8.TabIndex = 43;
             // 
             // textBox4
             // 
@@ -211,6 +193,7 @@
             this.chooseTypeBox2.Name = "chooseTypeBox2";
             this.chooseTypeBox2.Size = new System.Drawing.Size(121, 21);
             this.chooseTypeBox2.TabIndex = 55;
+            this.chooseTypeBox2.SelectedIndexChanged += new System.EventHandler(this.chooseTypeBox2_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -234,10 +217,8 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox8);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
@@ -268,10 +249,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;

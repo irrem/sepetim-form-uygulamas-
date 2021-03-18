@@ -21,13 +21,20 @@ namespace Sepetim
         private void SubePanel_Load(object sender, EventArgs e)
         {
            dgwSubeler.DataSource= GetAll();
-
+            KategoriDoldur();
         }
         private void addBtn_Click(object sender, EventArgs e)
         {
 
         }
-
+        SqlConnection baglanti = new SqlConnection(@"Data Source =DESKTOP-UF1JUFT\SQLEXPRESS; initial catalog=Sepetim;integrated security=true");
+        private void ConnectionControl()
+        {
+            if (baglanti.State == ConnectionState.Closed)
+            {
+                baglanti.Open();
+            }
+        }
         private void updateBtn_Click(object sender, EventArgs e)
         {
             Update(new SubeModel
@@ -51,21 +58,15 @@ namespace Sepetim
             }
             dgwSubeler.DataSource = GetAll();
         }
-        Kategori kategori = new Kategori();
+      
         public void KategoriDoldur()
         {
-            chooseTypeBox.DataSource = kategori.GetAll();
-            chooseTypeBox.DisplayMember = "KategoriAd";
-            chooseTypeBox.ValueMember = "KategoriId";
+            PersonelPanel personel = new PersonelPanel();
+            chooseTypeBox.DataSource = personel.GetAllWithCategory(1);
+            chooseTypeBox.DisplayMember = "personelAdSoyad";
+            chooseTypeBox.ValueMember = "personelId";
         }
-        SqlConnection baglanti = new SqlConnection(@"Data Source =DESKTOP-UF1JUFT\SQLEXPRESS; initial catalog=Sepetim;integrated security=true");
-        private void ConnectionControl()
-        {
-            if (baglanti.State == ConnectionState.Closed)
-            {
-                baglanti.Open();
-            }
-        }
+        
         public List<SubeModel> GetAll()
         {
             ConnectionControl();
@@ -135,6 +136,80 @@ namespace Sepetim
 
             baglanti.Close();
 
+        }
+
+        private void addBtn_Click_1(object sender, EventArgs e)
+        {
+           
+
+            if (MessageBox.Show("Bütün bilgilerinin doğruluğundan emin misiniz?", "Onay Verin", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                Update(new SubeModel
+                {
+                    subeAd = textBox9.Text,
+                    subeAdres = textBox8.Text,
+                    subeTelefon = textBox1.Text,
+                    subeMail = textBox2.Text,
+                    personelId = Convert.ToInt32(comboBox1.SelectedValue)
+                });
+                MessageBox.Show("Ürün Sistemimize Başarıyla Eklenmiştir.");
+            }
+            dgwSubeler.DataSource = GetAll();
+        }
+
+
+        private void updateBtn_Click_1(object sender, EventArgs e)
+        {
+            
+
+            if (MessageBox.Show("Bütün bilgilerinin doğruluğundan emin misiniz?", "Onay Verin", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                Update(new SubeModel
+                {
+                    subeId = Convert.ToInt32(dgwSubeler.CurrentRow.Cells[0].Value),
+                    subeAd = textBox9.Text,
+                    subeAdres = textBox8.Text,
+                    subeTelefon = textBox1.Text,
+                    subeMail = textBox2.Text,
+                    personelId = Convert.ToInt32(comboBox1.SelectedValue)
+                });
+                MessageBox.Show("Ürün Sistemimize Başarıyla Guncellenmiştir.");
+            }
+            dgwSubeler.DataSource = GetAll();
+        }
+         
+        private void deleteBtn_Click_1(object sender, EventArgs e)
+        {
+
+            if (MessageBox.Show("Bütün bilgilerinin doğruluğundan emin misiniz?", "Onay Verin", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                Delete(Convert.ToInt32(dgwSubeler.CurrentRow.Cells[0].Value));
+                MessageBox.Show("Ürün Sistemimize Başarıyla Silinmiştir.");
+            }
+            dgwSubeler.DataSource = GetAll();
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgwSubeler_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            textBox9.Text = dgwSubeler.CurrentRow.Cells[1].Value.ToString();
+            textBox8.Text = dgwSubeler.CurrentRow.Cells[2].Value.ToString();
+            textBox1.Text = dgwSubeler.CurrentRow.Cells[3].Value.ToString();
+            textBox2.Text = dgwSubeler.CurrentRow.Cells[4].Value.ToString();
+        }
+        
+
+        private void chooseTypeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
     }
 }

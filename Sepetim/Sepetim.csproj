@@ -59,6 +59,7 @@
       <DependentUpon>Kategori.cs</DependentUpon>
     </Compile>
     <Compile Include="KategoriModel.cs" />
+    <Compile Include="KuryeIsYukuModel.cs" />
     <Compile Include="LoginType.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +89,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SiparisModel.cs" />
     <Compile Include="SubeModel.cs" />
     <Compile Include="SubePanel.cs">
       <SubType>Form</SubType>
@@ -100,6 +102,13 @@
     </Compile>
     <Compile Include="SubeSorumlusuPanel.Designer.cs">
       <DependentUpon>SubeSorumlusuPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TeslimatModel.cs" />
+    <Compile Include="TeslimatPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TeslimatPanel.Designer.cs">
+      <DependentUpon>TeslimatPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UrunModel.cs" />
     <Compile Include="UrunlerPanel.cs">
@@ -146,6 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SubeSorumlusuPanel.resx">
       <DependentUpon>SubeSorumlusuPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TeslimatPanel.resx">
+      <DependentUpon>TeslimatPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UrunlerPanel.resx">
       <DependentUpon>UrunlerPanel.cs</DependentUpon>

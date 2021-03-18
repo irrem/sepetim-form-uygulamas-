@@ -17,10 +17,14 @@ namespace Sepetim
         {
             InitializeComponent();
         }
-
+         public bool subeSorumlusu = false;
         private void PersonelPanel_Load(object sender, EventArgs e)
         {
             dgwPersonel.DataSource = GetAll();
+           /* if (subeSorumlusu)
+            {
+                addBtn.Visible = false;
+            }*/
             KategoriDoldur();
             SubeDoldur();
 
@@ -67,10 +71,20 @@ namespace Sepetim
                 baglanti.Open();
             }
         }
+        
         public List<PersonelKategoriModel> GetCategoryAll()
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("Select * from PersonelKategori", baglanti);
+            SqlCommand command;;
+            if (subeSorumlusu)
+            {
+                command = new SqlCommand("Select * from PersonelKategori where kategoriId=2 or kategoriId=3 ", baglanti);
+            }
+            else
+            {
+                command = new SqlCommand("Select * from PersonelKategori", baglanti);
+            }
+            
 
             SqlDataReader reader = command.ExecuteReader();
             List<PersonelKategoriModel> PersonelKategori = new List<PersonelKategoriModel>();
@@ -91,7 +105,11 @@ namespace Sepetim
         public List<PersonelModel> GetAll()
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("Select * from Personel", baglanti);
+            SqlCommand command;
+             if (subeSorumlusu)
+                command = new SqlCommand("Select * from Personel where personelKategori=2 or personelKategori=3", baglanti);
+            else
+                command = new SqlCommand("Select * from Personel", baglanti);
 
             SqlDataReader reader = command.ExecuteReader();
             List<PersonelModel> Personeller = new List<PersonelModel>();
@@ -99,8 +117,7 @@ namespace Sepetim
             {
                 PersonelModel personelModel = new PersonelModel
                 {
-                    personelAd = reader["personelAd"].ToString(),
-                    personelSoyad = reader["personelSoyad"].ToString(),
+                    personelAdSoyad = reader["personelAdSoyad"].ToString(),
                     personelId = Convert.ToInt32(reader["personelId"]),
                     personelAdres = reader["personelAdres"].ToString(),
                     personelTelefon = reader["personelTelefon"].ToString(),
@@ -118,6 +135,7 @@ namespace Sepetim
         }
         public List<PersonelModel> GetAllWithCategory(int id)
         {
+            
             ConnectionControl();
             SqlCommand command = new SqlCommand("Select * from Personel where personelKategori like '%" + id + "%'", baglanti);
 
@@ -127,8 +145,7 @@ namespace Sepetim
             {
                 PersonelModel personelModel = new PersonelModel
                 {
-                    personelAd = reader["personelAd"].ToString(),
-                    personelSoyad = reader["personelSoyad"].ToString(),
+                    personelAdSoyad = reader["personelAdSoyad"].ToString(),
                     personelId = Convert.ToInt32(reader["personelId"]),
                     personelAdres = reader["personelAdres"].ToString(),
                     personelTelefon = reader["personelTelefon"].ToString(),
@@ -147,11 +164,10 @@ namespace Sepetim
         public void Add(PersonelModel personel)
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("insert into Personel values (@personelAd, @personelSoyad,@personelTelefon," +
+            SqlCommand command = new SqlCommand("insert into Personel values (@personelAdSoyad,@personelTelefon," +
                "@personelMail,@personelAdres,@personelIsBaslangic,@personelKategori,@subeId)" ,baglanti);
 
-            command.Parameters.AddWithValue("personelAd", personel.personelAd);
-            command.Parameters.AddWithValue("personelSoyad", personel.personelSoyad);
+            command.Parameters.AddWithValue("personelAdSoyad", personel.personelAdSoyad);
             command.Parameters.AddWithValue("personelTelefon", personel.personelTelefon);
             command.Parameters.AddWithValue("personelMail", personel.personelMail);
             command.Parameters.AddWithValue("personelAdres", personel.personelAdres);
@@ -164,13 +180,12 @@ namespace Sepetim
         public void Update(PersonelModel personel)
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("Update Personel set personelAd=@personelAd," +
-                "personelSoyad=@personelSoyad,personelTelefon=@personelTelefon," +
+            SqlCommand command = new SqlCommand("Update Personel set personelAdSoyad=@personelAdSoyad," +
+                "personelTelefon=@personelTelefon," +
                 "personelMail=@personelMail,personelAdres=@personelAdres,personelIsBaslangic=@personelIsBaslangic,personelKategori=@personelKategori,subeId=@subeId" +
                 " where personelId=@personelId", baglanti);
             command.Parameters.AddWithValue("personelId", personel.personelId);
-            command.Parameters.AddWithValue("personelAd", personel.personelAd);
-            command.Parameters.AddWithValue("personelSoyad", personel.personelSoyad);
+            command.Parameters.AddWithValue("personelAdSoyad", personel.personelAdSoyad);
             command.Parameters.AddWithValue("personelTelefon", personel.personelTelefon);
             command.Parameters.AddWithValue("personelMail", personel.personelMail);
             command.Parameters.AddWithValue("personelAdres", personel.personelAdres);
@@ -211,20 +226,20 @@ namespace Sepetim
         private void addBtn_Click(object sender, EventArgs e)
         {
            
-            Add(new PersonelModel
-            {
-                personelAd = textBox9.Text,
-                personelSoyad = textBox8.Text,
-                personelTelefon = textBox1.Text,
-                personelMail = textBox2.Text,
-                personelAdres = textBox3.Text,
-                personelIsBaslangic = textBox4.Text,
-                personelKategori= Convert.ToInt32(chooseTypeBox.SelectedValue),
-                subeId=Convert.ToInt32(chooseTypeBox2.SelectedValue)
-            });
+            
             if (MessageBox.Show("Bütün bilgilerinin doğruluğundan emin misiniz?", "Onay Verin", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                MessageBox.Show("Ürün Sistemimize Başarıyla Eklenmiştir.");
+                Add(new PersonelModel
+                {
+                    personelAdSoyad = textBox9.Text,
+                    personelTelefon = textBox1.Text,
+                    personelMail = textBox2.Text,
+                    personelAdres = textBox3.Text,
+                    personelIsBaslangic = textBox4.Text,
+                    personelKategori = Convert.ToInt32(chooseTypeBox.SelectedValue),
+                    subeId = Convert.ToInt32(chooseTypeBox2.SelectedValue)
+                });
+                MessageBox.Show("Personel Sistemimize Başarıyla Eklenmiştir.");
             }
 
             dgwPersonel.DataSource = GetAll();
@@ -237,29 +252,29 @@ namespace Sepetim
             if (MessageBox.Show("Bütün bilgilerinin doğruluğundan emin misiniz?", "Onay Verin", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Delete(Convert.ToInt32(dgwPersonel.CurrentRow.Cells[0].Value));
-                MessageBox.Show("Müşteri Sistemimize Başarıyla Silinmiştir.");
+                MessageBox.Show("Personel Sistemimize Başarıyla Silinmiştir.");
             }
             dgwPersonel.DataSource = GetAll();
         }
 
         private void updateBtn_Click_1(object sender, EventArgs e)
         {
-            Update(new PersonelModel
-            {
-                personelId = Convert.ToInt32(dgwPersonel.CurrentRow.Cells[0].Value),
-                personelAd = textBox9.Text,
-                personelSoyad = textBox8.Text,
-                personelTelefon = textBox1.Text,
-                personelMail = textBox2.Text,
-                personelAdres = textBox3.Text,
-                personelIsBaslangic = textBox4.Text,
-                personelKategori = Convert.ToInt32(chooseTypeBox.SelectedValue),
-                subeId = Convert.ToInt32(chooseTypeBox2.SelectedValue)
-            });
+          
 
             if (MessageBox.Show("Bütün bilgilerinin doğruluğundan emin misiniz?", "Onay Verin", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                MessageBox.Show("Ürün Sistemimize Başarıyla Guncellenmiştir.");
+                Update(new PersonelModel
+                {
+                    personelId = Convert.ToInt32(dgwPersonel.CurrentRow.Cells[0].Value),
+                    personelAdSoyad = textBox9.Text,
+                    personelTelefon = textBox1.Text,
+                    personelMail = textBox2.Text,
+                    personelAdres = textBox3.Text,
+                    personelIsBaslangic = textBox4.Text,
+                    personelKategori = Convert.ToInt32(chooseTypeBox.SelectedValue),
+                    subeId = Convert.ToInt32(chooseTypeBox2.SelectedValue)
+                });
+                MessageBox.Show("Personel Sistemimize Başarıyla Guncellenmiştir.");
             }
             dgwPersonel.DataSource = GetAll();
         }
@@ -268,11 +283,15 @@ namespace Sepetim
         {
 
             textBox9.Text = dgwPersonel.CurrentRow.Cells[1].Value.ToString();
-            textBox8.Text = dgwPersonel.CurrentRow.Cells[2].Value.ToString();
-            textBox1.Text = dgwPersonel.CurrentRow.Cells[3].Value.ToString();
-            textBox2.Text = dgwPersonel.CurrentRow.Cells[4].Value.ToString();
-            textBox3.Text = dgwPersonel.CurrentRow.Cells[5].Value.ToString();
-            textBox4.Text = dgwPersonel.CurrentRow.Cells[6].Value.ToString();
+            textBox1.Text = dgwPersonel.CurrentRow.Cells[2].Value.ToString();
+            textBox2.Text = dgwPersonel.CurrentRow.Cells[3].Value.ToString();
+            textBox3.Text = dgwPersonel.CurrentRow.Cells[4].Value.ToString();
+            textBox4.Text = dgwPersonel.CurrentRow.Cells[5].Value.ToString();
+        }
+
+        private void chooseTypeBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

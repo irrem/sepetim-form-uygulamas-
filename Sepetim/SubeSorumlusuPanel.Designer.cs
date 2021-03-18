@@ -50,6 +50,7 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "Sipariş Teslimat Kontrolü";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // personelControl
             // 
@@ -59,6 +60,7 @@
             this.personelControl.TabIndex = 3;
             this.personelControl.Text = "Personel Görüntüle";
             this.personelControl.UseVisualStyleBackColor = true;
+            this.personelControl.Click += new System.EventHandler(this.personelControl_Click);
             // 
             // SubeSorumlusuPanel
             // 

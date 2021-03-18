@@ -9,8 +9,7 @@ namespace Sepetim
     public class PersonelModel
     {
         public int personelId{ get; set; }
-        public String personelAd { get; set; }
-        public String personelSoyad{ get; set; }
+        public String personelAdSoyad { get; set; }
         public String personelTelefon{ get; set; }
         public String personelMail { get; set; }
         public String personelAdres { get; set; }

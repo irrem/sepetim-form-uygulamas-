@@ -38,6 +38,7 @@ namespace Sepetim
                 KategoriModel kategoriUrun = new KategoriModel
                 {
                     KategoriAd = reader["kategoriAd"].ToString(),
+                    KategoriKodAd = reader["kategoriKodAd"].ToString(),
                     KategoriId = Convert.ToInt32(reader["kategoriId"])
 
                 };
@@ -51,8 +52,9 @@ namespace Sepetim
         public void Add(KategoriModel kategoriUrun)
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("insert into Kategori values (@KategoriAd)", baglanti);
+            SqlCommand command = new SqlCommand("insert into Kategori values (@KategoriAd,@KategoriKodAd)", baglanti);
             command.Parameters.AddWithValue("kategoriAd", kategoriUrun.KategoriAd);
+            command.Parameters.AddWithValue("kategoriKodAd", kategoriUrun.KategoriKodAd);
             command.ExecuteNonQuery();
             baglanti.Close();
 
@@ -60,9 +62,10 @@ namespace Sepetim
         public void Update(KategoriModel kategoriUrun)
         {
             ConnectionControl();
-            SqlCommand command = new SqlCommand("Update Kategori set kategoriAd=@KategoriAd where kategoriId=@KategoriId", baglanti);
+            SqlCommand command = new SqlCommand("Update Kategori set kategoriAd=@KategoriAd,kategoriKodAd=@KategoriKodAd where kategoriId=@KategoriId", baglanti);
             command.Parameters.AddWithValue("kategoriId", kategoriUrun.KategoriId);
             command.Parameters.AddWithValue("kategoriAd", kategoriUrun.KategoriAd);
+            command.Parameters.AddWithValue("kategoriKodAd", kategoriUrun.KategoriKodAd);
             command.ExecuteNonQuery();
 
             baglanti.Close();
@@ -88,17 +91,20 @@ namespace Sepetim
         private void dgwCategory_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             categoryTxt.Text = dgwCategory.CurrentRow.Cells[1].Value.ToString();
+            categoryCTxt.Text = dgwCategory.CurrentRow.Cells[2].Value.ToString();
         }
 
         private void updateCategoryBtn_Click(object sender, EventArgs e)
         {
-            Update(new KategoriModel
-            {
-               KategoriId = Convert.ToInt32(dgwCategory.CurrentRow.Cells[0].Value),
-               KategoriAd = categoryTxt.Text
-            });
+           
             if (MessageBox.Show("Bütün bilgilerinin doğruluğundan emin misiniz?", "Onay Verin", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                Update(new KategoriModel
+                {
+                    KategoriId = Convert.ToInt32(dgwCategory.CurrentRow.Cells[0].Value),
+                    KategoriAd = categoryTxt.Text,
+                    KategoriKodAd = categoryCTxt.Text
+                });
                 MessageBox.Show("Ürün Sistemimize Başarıyla Guncellenmiştir.");
             }
             dgwCategory.DataSource = GetAll();
@@ -111,7 +117,9 @@ namespace Sepetim
             {
                 Add(
                     new KategoriModel{
-                    KategoriAd = categoryTxt.Text });
+                    KategoriAd = categoryTxt.Text ,
+                        KategoriKodAd = categoryCTxt.Text
+                    });
                 MessageBox.Show("Ürün Sistemimize Başarıyla Eklenmiştir.");
             }
             dgwCategory.DataSource = GetAll();
@@ -133,6 +141,11 @@ namespace Sepetim
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }

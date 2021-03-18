@@ -16,5 +16,18 @@ namespace Sepetim
         {
             InitializeComponent();
         }
+
+        private void personelControl_Click(object sender, EventArgs e)
+        {
+            PersonelPanel personel = new PersonelPanel();
+            personel.subeSorumlusu = true;
+            personel.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TeslimatPanel teslimatPanel = new TeslimatPanel();
+            teslimatPanel.Show();
+        }
     }
 }
