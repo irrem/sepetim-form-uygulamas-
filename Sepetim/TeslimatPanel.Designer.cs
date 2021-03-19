@@ -38,6 +38,7 @@
             this.secilenSiparisLbl = new System.Windows.Forms.Label();
             this.dgwTeslimat = new System.Windows.Forms.DataGridView();
             this.siparisSilBtn = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgwSiparis)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgwTeslimat)).BeginInit();
             this.SuspendLayout();
@@ -62,7 +63,7 @@
             // 
             // deleteBtn
             // 
-            this.deleteBtn.Location = new System.Drawing.Point(518, 272);
+            this.deleteBtn.Location = new System.Drawing.Point(413, 210);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(99, 52);
             this.deleteBtn.TabIndex = 76;
@@ -136,12 +137,23 @@
             this.siparisSilBtn.UseVisualStyleBackColor = true;
             this.siparisSilBtn.Click += new System.EventHandler(this.siparisSilBtn_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(518, 265);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(99, 49);
+            this.button1.TabIndex = 92;
+            this.button1.Text = "Rapor Görüntüle";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // TeslimatPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(697, 363);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.siparisSilBtn);
             this.Controls.Add(this.dgwTeslimat);
             this.Controls.Add(this.secilenSiparisLbl);
@@ -174,5 +186,6 @@
         private System.Windows.Forms.Label secilenSiparisLbl;
         private System.Windows.Forms.DataGridView dgwTeslimat;
         private System.Windows.Forms.Button siparisSilBtn;
+        private System.Windows.Forms.Button button1;
     }
 }

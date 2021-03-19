@@ -35,12 +35,14 @@ namespace Sepetim
         private void TeslimatPanel_Load(object sender, EventArgs e)
         {
             siparisSilBtn.Visible = false ;
+            button1.Visible = false;
             dgwSiparis.DataSource = GetSiparis();
             PersonelGetir();
              dgwTeslimat.DataSource = TeslimatGoruntule();
             if (admin)
             {
                 siparisSilBtn.Visible=true;
+                button1.Visible = true;
             }
 
         }
@@ -326,6 +328,12 @@ namespace Sepetim
                 MessageBox.Show("Sipariş Sistemden Başarıyla Silinmiştir.");
             }
             dgwSiparis.DataSource = GetSiparis();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Rapor rapor = new Rapor();
+            rapor.Show();
         }
 
         private void updateBtn_Click(object sender, EventArgs e)

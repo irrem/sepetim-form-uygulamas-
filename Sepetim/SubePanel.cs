@@ -62,7 +62,7 @@ namespace Sepetim
         public void KategoriDoldur()
         {
             PersonelPanel personel = new PersonelPanel();
-            chooseTypeBox.DataSource = personel.GetAllWithCategory(1);
+            chooseTypeBox.DataSource = personel.GetAll();
             chooseTypeBox.DisplayMember = "personelAdSoyad";
             chooseTypeBox.ValueMember = "personelId";
         }
@@ -162,15 +162,15 @@ namespace Sepetim
 
             if (MessageBox.Show("Bütün bilgilerinin doğruluğundan emin misiniz?", "Onay Verin", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                Update(new SubeModel
+                Add(new SubeModel
                 {
                     subeAd = textBox9.Text,
                     subeAdres = textBox8.Text,
                     subeTelefon = textBox1.Text,
                     subeMail = textBox2.Text,
-                    personelId = Convert.ToInt32(comboBox1.SelectedValue)
+                    personelId = Convert.ToInt32(chooseTypeBox.SelectedValue)
                 });
-                MessageBox.Show("Ürün Sistemimize Başarıyla Eklenmiştir.");
+                MessageBox.Show("Şube Sistemimize Başarıyla Eklenmiştir.");
             }
             dgwSubeler.DataSource = GetAll();
         }
@@ -189,9 +189,9 @@ namespace Sepetim
                     subeAdres = textBox8.Text,
                     subeTelefon = textBox1.Text,
                     subeMail = textBox2.Text,
-                    personelId = Convert.ToInt32(comboBox1.SelectedValue)
+                    personelId = Convert.ToInt32(chooseTypeBox.SelectedValue)
                 });
-                MessageBox.Show("Ürün Sistemimize Başarıyla Guncellenmiştir.");
+                MessageBox.Show("Şube Sistemimize Başarıyla Guncellenmiştir.");
             }
             dgwSubeler.DataSource = GetAll();
         }
@@ -202,7 +202,7 @@ namespace Sepetim
             if (MessageBox.Show("Bütün bilgilerinin doğruluğundan emin misiniz?", "Onay Verin", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Delete(Convert.ToInt32(dgwSubeler.CurrentRow.Cells[0].Value));
-                MessageBox.Show("Ürün Sistemimize Başarıyla Silinmiştir.");
+                MessageBox.Show("Şube Sistemimize Başarıyla Silinmiştir.");
             }
             dgwSubeler.DataSource = GetAll();
         }
